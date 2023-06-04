@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter gallery</title>
+</head>
+
+<style>
+    *,::before,::after{
+        margin: 0;
+        padding: 0;
+        box-sizing: inherit;
+    }
+    html{
+        box-sizing: border-box;
+        font-size: 62.5%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .container{
+        margin: 10rem 1rem;
+    }
+    .gallery .image__container img{
+        width: 20rem;
+        height: 20rem;
+        object-fit: cover;
+    }
+    .gallery .image__container{
+        width: 20rem;
+        max-height: 15rem;
+        overflow: hidden;
+    }
+    .gallery .image__container.hide{
+        display: none;
+    }
+    .container .select{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: .6rem;
+        margin-bottom: 2rem;
+    }
+    .container .select span{
+        display: inline-block;
+        padding: .7rem 1.2rem;
+        background-color: #cbcbcb;
+        border-radius: .3rem;
+        cursor: pointer;
+    }
+    .container .select span.active{
+        background-color: #0a6cf4;
+        color: white;
+    }
+
+    .container .gallery{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+</style>
+
+<body>
+    <div class="container">
+        <div class="select">
+            <span data-filter="all" class="active">All</span>
+            <span data-filter="mobile">Mobile</span>
+            <span data-filter="camera">Camera</span>
+            <span data-filter="watch">Watch</span>
+            <span data-filter="shoe">Shoe</span>
+            <span data-filter="headphones">Headphones</span>
+        </div>
+
+        <div class="gallery">
+            <div class="image__container" data-item="mobile">
+                <img src="./images/mobile_1.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="camera">
+                <img src="./images/camera_1.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="headphones">
+                <img src="./images/headphones_2.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="camera">
+                <img src="./images/camera_4.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="mobile">
+                <img src="./images/mobile_3.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="watch">
+                <img src="./images/watch_1.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="shoe">
+                <img src="./images/shoes_2.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="camera">
+                <img src="./images/camera_2.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="headphones">
+                <img src="./images/headphones_4.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="headphones">
+                <img src="./images/headphones_1.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="watch">
+                <img src="./images/watch_2.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="camera">
+                <img src="./images/camera_3.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="mobile">
+                <img src="./images/mobile_2.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="headphones">
+                <img src="./images/headphones_3.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="camera">
+                <img src="./images/camera_5.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="shoe">
+                <img src="./images/shoes_1.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="shoe">
+                <img src="./images/shoes_3.jpg" alt="">
+            </div>
+            <div class="image__container" data-item="shoe">
+                <img src="./images/shoes_4.jpg" alt="">
+            </div>
+            
+        </div>
+    </div>
+
+
+    <script>
+        let btns = document.querySelectorAll('.select span');
+        let images = document.querySelectorAll('.image__container');
+
+        
+        for(let i = 0; i < btns.length; i++){
+            btns[i].addEventListener('click', function(){
+                for(let j = 0; j < btns.length; j++)
+                    btns[j].classList.remove('active');
+
+                this.classList.add('active');
+
+
+                let filter = this.getAttribute('data-filter');
+                
+                for(let k = 0; k < images.length; k++){
+                    images[k].classList.add('hide');
+
+                    if(images[k].getAttribute('data-item') == filter || filter == 'all'){
+                        images[k].classList.remove('hide')
+                        images[k].classList.add('active');
+                    }
+                        
+                }
+            })
+        }
+
+
+
+    </script>
+</body>
+</html>
